@@ -12,6 +12,9 @@ class SocketDataModel {
   /// the type of the message, like path
   final String path;
 
+  /// this is the method of the socket request
+  final SocketMethod method;
+
   /// the time this message left the sender device
   late DateTime sentAtLocal;
 
@@ -22,10 +25,11 @@ class SocketDataModel {
   final DateTime? receivedAt;
 
   final Map<String, dynamic>? headers;
-  final Map<String, dynamic> body;
+  final dynamic body;
 
   SocketDataModel({
     required this.path,
+    required this.method,
     this.sentAtServer,
     this.receivedAt,
     this.headers,
@@ -58,4 +62,17 @@ class SocketDataModel {
       return null;
     }
   }
+}
+
+enum SocketMethod {
+  @JsonValue('get')
+  get,
+  @JsonValue('post')
+  post,
+  @JsonValue('delete')
+  delete,
+  @JsonValue('patch')
+  patch,
+  @JsonValue('put')
+  put,
 }

@@ -9,18 +9,20 @@ part of 'socket_data_model.dart';
 SocketDataModel _$SocketDataModelFromJson(Map<String, dynamic> json) =>
     SocketDataModel(
       path: json['path'] as String,
+      method: $enumDecode(_$SocketMethodEnumMap, json['method']),
       sentAtServer: _$JsonConverterFromJson<String, DateTime>(
           json['sentAtServer'], const DateTimeConverter().fromJson),
       receivedAt: _$JsonConverterFromJson<String, DateTime>(
           json['receivedAt'], const DateTimeConverter().fromJson),
       headers: json['headers'] as Map<String, dynamic>?,
-      body: json['body'] as Map<String, dynamic>,
+      body: json['body'],
     )..sentAtLocal =
         const DateTimeConverter().fromJson(json['sentAtLocal'] as String);
 
 Map<String, dynamic> _$SocketDataModelToJson(SocketDataModel instance) =>
     <String, dynamic>{
       'path': instance.path,
+      'method': _$SocketMethodEnumMap[instance.method]!,
       'sentAtLocal': const DateTimeConverter().toJson(instance.sentAtLocal),
       'sentAtServer': _$JsonConverterToJson<String, DateTime>(
           instance.sentAtServer, const DateTimeConverter().toJson),
@@ -29,6 +31,14 @@ Map<String, dynamic> _$SocketDataModelToJson(SocketDataModel instance) =>
       'headers': instance.headers,
       'body': instance.body,
     };
+
+const _$SocketMethodEnumMap = {
+  SocketMethod.get: 'get',
+  SocketMethod.post: 'post',
+  SocketMethod.delete: 'delete',
+  SocketMethod.patch: 'patch',
+  SocketMethod.put: 'put',
+};
 
 Value? _$JsonConverterFromJson<Json, Value>(
   Object? json,
