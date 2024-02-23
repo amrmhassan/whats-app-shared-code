@@ -8,6 +8,7 @@ part of 'socket_data_model.dart';
 
 SocketDataModel _$SocketDataModelFromJson(Map<String, dynamic> json) =>
     SocketDataModel(
+      id: json['id'] as String,
       path: json['path'] as String,
       method: $enumDecode(_$SocketMethodEnumMap, json['method']),
       sentAtServer: _$JsonConverterFromJson<String, DateTime>(
@@ -23,6 +24,7 @@ SocketDataModel _$SocketDataModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SocketDataModelToJson(SocketDataModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'path': instance.path,
       'method': _$SocketMethodEnumMap[instance.method]!,
       'sentAtLocal': const DateTimeConverter().toJson(instance.sentAtLocal),

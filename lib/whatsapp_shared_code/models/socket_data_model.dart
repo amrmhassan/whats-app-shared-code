@@ -11,6 +11,8 @@ part 'socket_data_model.g.dart';
 @JsonSerializable(explicitToJson: true)
 @DateTimeConverter()
 class SocketDataModel {
+  final String id;
+
   /// the type of the message, like path
   final String path;
 
@@ -31,6 +33,7 @@ class SocketDataModel {
   final UserDataSendingId userDataSendingId;
 
   SocketDataModel({
+    required this.id,
     required this.path,
     required this.method,
     this.sentAtServer,
