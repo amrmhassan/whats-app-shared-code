@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shared_code/shared_code/converters/date_time_converter.dart';
+import 'package:whatsapp_shared_code/whatsapp_shared_code/models/user_data_sending_id.dart';
 import 'package:whatsapp_shared_code/whatsapp_shared_code/runtime_variables.dart';
 
 part 'socket_data_model.g.dart';
@@ -27,6 +28,7 @@ class SocketDataModel {
 
   final Map<String, dynamic>? headers;
   final dynamic body;
+  final UserDataSendingId userDataSendingId;
 
   SocketDataModel({
     required this.path,
@@ -35,6 +37,7 @@ class SocketDataModel {
     this.receivedAt,
     this.headers,
     required this.body,
+    required this.userDataSendingId,
   }) {
     sentAtLocal = DateTime.now();
   }

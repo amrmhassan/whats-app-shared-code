@@ -16,6 +16,8 @@ SocketDataModel _$SocketDataModelFromJson(Map<String, dynamic> json) =>
           json['receivedAt'], const DateTimeConverter().fromJson),
       headers: json['headers'] as Map<String, dynamic>?,
       body: json['body'],
+      userDataSendingId: UserDataSendingId.fromJson(
+          json['userDataSendingId'] as Map<String, dynamic>),
     )..sentAtLocal =
         const DateTimeConverter().fromJson(json['sentAtLocal'] as String);
 
@@ -30,6 +32,7 @@ Map<String, dynamic> _$SocketDataModelToJson(SocketDataModel instance) =>
           instance.receivedAt, const DateTimeConverter().toJson),
       'headers': instance.headers,
       'body': instance.body,
+      'userDataSendingId': instance.userDataSendingId.toJson(),
     };
 
 const _$SocketMethodEnumMap = {
