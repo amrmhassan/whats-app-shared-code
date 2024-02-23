@@ -68,6 +68,10 @@ class SocketDataModel {
     String result = _createHash(toString());
     return result;
   }
+
+  bool exact(String otherHash) {
+    return otherHash == hash;
+  }
 }
 
 enum SocketMethod {
