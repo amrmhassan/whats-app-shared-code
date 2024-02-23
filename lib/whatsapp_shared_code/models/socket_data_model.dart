@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shared_code/shared_code/converters/date_time_converter.dart';
 import 'package:whatsapp_shared_code/whatsapp_shared_code/runtime_variables.dart';
@@ -62,6 +63,11 @@ class SocketDataModel {
       return null;
     }
   }
+
+  String get hash {
+    String result = _createHash(toString());
+    return result;
+  }
 }
 
 enum SocketMethod {
@@ -75,4 +81,11 @@ enum SocketMethod {
   patch,
   @JsonValue('put')
   put,
+}
+
+String _createHash(String input) {
+  var bytes = utf8.encode(input); // Convert the string to bytes
+  var hash = sha256.convert(bytes); // Generate the hash
+
+  return hash.toString(); // Return the hash as a string
 }
